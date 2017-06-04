@@ -1,6 +1,6 @@
 Context = Object:extend()
 
-function Context.new(self, title, image)
+function Context:new(title, image)
 	self.title = title
 	if type(image) == "string" then
 		self:newBackground(image)
@@ -10,11 +10,7 @@ function Context.new(self, title, image)
 	return self
 end
 
-function Context.newCharacter(self, character)
-	self.character = character
-end
-
-function Context.newBackground(self, filename)
+function Context:newBackground(filename)
 	local sWidth, sHeight = love.graphics.getDimensions()
 	self.background = love.graphics.newImage(filename)
 	local width, height = self.background:getDimensions()
@@ -22,9 +18,8 @@ function Context.newBackground(self, filename)
 	self.sy = sHeight/height
 end
 
-function Context.draw(self)
+function Context:draw()
 	love.graphics.draw(self.background, 0, 0, 0, self.sx, self.sy)
-	self.character:draw()
 end
 
 return Context
