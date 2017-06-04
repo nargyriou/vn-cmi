@@ -3,9 +3,11 @@ local monNoeud
 function love.load()
 	Object = require "classic"
 	Arbre = require "arbre"
+	Character = require "character"
 
 	monNoeud = Arbre()
-	monNoeud:addContext(Context:new("ma bite", "data/locations/classroom.jpg"))
+	monNoeud:addContext(Context("Entretien", "data/locations/classroom.jpg"))
+	monNoeud:addCharacter(Character("Tajine", "data/tajine/cute.png"))
 end
 
 function love.draw()
