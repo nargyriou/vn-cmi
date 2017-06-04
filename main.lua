@@ -5,7 +5,7 @@ function love.load()
 	Arbre = require "arbre"
 
 	monNoeud = Arbre()
-	monNoeud:addContext(Context:new("ma bite", "data/tajine/cute.png"))
+	monNoeud:addContext(Context:new("ma bite", "data/locations/classroom.jpg"))
 end
 
 function love.draw()
