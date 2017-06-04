@@ -11,6 +11,7 @@
 #################
 *.sublime-project
 *.sublime-workspace
+sftp-config.json
 
 # Packages #
 ############
