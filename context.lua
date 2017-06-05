@@ -1,7 +1,6 @@
 Context = Object:extend()
 
-function Context:new(title, image)
-	self.title = title
+function Context:new(image)
 	if type(image) == "string" then
 		self:newBackground(image)
 	elseif image then

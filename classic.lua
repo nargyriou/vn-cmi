@@ -54,7 +54,7 @@ end
 
 
 function Object:__tostring()
-  return "Object"
+  return "table"
 end
 
 
