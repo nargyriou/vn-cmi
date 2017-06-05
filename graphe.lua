@@ -14,6 +14,7 @@ end
 function Noeud:new(text, background)
 	self.text = text
 	self.children = {}
+	self.parent = nil
 	self.dialog = Dialog()
 
 	if type(background) == "string" then
@@ -50,6 +51,12 @@ function Noeud:addChild(child, path)
 	if type(child) == "string" then
 		local text = child
 		child = Noeud(text, path)
+	end
+
+	child.parent = self
+
+	if not child.context then
+		child.context = self.context
 	end
 
 	self.dialog:addChoice(child.text)
