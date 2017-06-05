@@ -69,12 +69,21 @@ end
 function Dialog:select(n)
 	self.selection = n
 end
-function Dialog:selectNext()
+function Dialog:forward()
 	self.selection = (self.selection + 1)
 	if self.selection > #self.choices then
 		self.selection = 1
 	end
 end
+function Dialog:backwards()
+	self.selection = (self.selection - 1)
+	if self.selection == 0 then
+		self.selection = #self.choices
+	end
+end
+
+function Dialog:getSelectedItem()
+	return self.selection, self.choices[self.selection]
+end
 
 return Dialog
-

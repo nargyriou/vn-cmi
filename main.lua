@@ -1,28 +1,44 @@
-local monNoeud
+local level
 
 function love.load()
 	Object = require "classic"
 	Noeud = require "graphe"
 	Character = require "character"
-	Input = require "input"
+	Player = require "player"
 
-	monNoeud = Noeud("Entretien", "data/locations/classroom.jpg")
-	monNoeud:addContext("data/locations/classroom.jpg")
-	monNoeud:addCharacter("Tajine", "data/tajine/cute.png")
+	love.keyboard.setKeyRepeat(0.1, true)
 
-	monNoeud:setQuestion("Est-ce que c'est plus clair ?")
-	monNoeud:addChild(Noeud("Oui.", "data/locations/classroom.jpg"))
-	monNoeud:addChild(Noeud("Non.", "data/locations/classroom.jpg"))
-	monNoeud:addChild(Noeud("Nooooooon !", "data/locations/classroom.jpg"))
-	monNoeud:addChild(Noeud("Nique bien ta mère Y_Y.", "data/locations/classroom.jpg"))
+	level = Noeud("Entretien"):addContext("data/locations/classroom.jpg")
+	level:addCharacter("Tajine", "data/tajine/cute.png")
 
-	input = Input()
-	input:bind("down", function() print(2) end)
-	input:bind("up", function() print(2) end)
+	level:setQuestion("Est-ce que c'est plus clair ?")
+	level:addChild("Oui.")
+		:addContext("data/locations/classroom.jpg")
+		:addCharacter("Tajine", "data/tajine/cute.png")
+		:addChild("Yay. :D")
+			:addContext("data/locations/classroom.jpg")
+	level:addChild("Non.")
+		:addContext("data/locations/classroom.jpg")
+		:addCharacter("Tajine", "data/tajine/triste.png")
+		:addChild("Aw. :(")
+			:addContext("data/locations/classroom.jpg")
+	level:addChild("Nooooooon !")
+		:addContext("data/locations/classroom.jpg")
+		:addCharacter("Tajine", "data/tajine/triste.png")
+		:addChild("Aw. :(")
+			:addContext("data/locations/classroom.jpg")
+	level:addChild("Nique bien ta mère Y_Y.")
+		:addContext("data/locations/classroom.jpg")
+		:addCharacter("Tajine", "data/tajine/triste.png")
+		:addChild("Aw. :(")
+			:addContext("data/locations/classroom.jpg")
+
+	player = Player(level)
+	player:initialize()
 end
 
 function love.draw()
-	monNoeud:draw()
+	player:drawStuff()
 end
 
 function love.update(dt)

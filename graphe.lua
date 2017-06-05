@@ -53,7 +53,17 @@ function Noeud:addChild(child, path)
 	end
 
 	self.dialog:addChoice(child.text)
-	return table.insert(self.children, child)
+	table.insert(self.children, child)
+	return child
+end
+
+function Noeud:getChildByText(text)
+	for i,v in pairs(self.children) do
+		if type(v) == "table" and v.text == text then
+			return v
+		end
+	end
+	return false
 end
 
 function Noeud:draw()
