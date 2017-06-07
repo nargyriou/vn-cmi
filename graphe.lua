@@ -1,6 +1,7 @@
 Condition = require "condition"
 Context = require "context"
 Dialog = require "dialog"
+Action = require "actions"
 local gamevar = require "game_variables"
 
 Noeud = Object:extend()
@@ -18,19 +19,29 @@ function Noeud:new(text, background)
 	self.parent = nil
 	self.dialog = Dialog()
 	self.condition = Condition()
+	self.action = nil
 
 	if type(background) == "string" then
 		self:addContext(background)
 	end
+	
 	return self
 end
 
 function Noeud:addCondition(a, op, b)
 	self.condition:set(a, op, b)
+	
+	return self
 end
 
-function Noeud:addAction(a, op, b)
-	-- todo
+function Noeud:addAction(name, a, op, b)
+	if a == nil then
+		self.action = name
+	else
+		self.action = Action(name, a, op, b)
+	end
+
+	return self
 end
 
 function Noeud:isUnlocked()

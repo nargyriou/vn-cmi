@@ -21,6 +21,7 @@ function love.load()
 	level
 		:addChild("Oui.")
 			:addCharacter(cute)
+			:addAction("tajine_amitie", "tajine_amitie", "+", 1)
 			:addChild("Yay. :D")
 				:addChild(level) -- Retour à l'entretien
 	level

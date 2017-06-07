@@ -32,6 +32,10 @@ end
 function Player:moveTo(node)
 	self.node = node
 	self.node:initialize()
+
+	if self.node.action then
+		self.node.action:execute()
+	end
 end
 
 function Player:forward()
