@@ -22,14 +22,19 @@ function Action:execute()
 	and	type(a) == "number" 
 	and	type(b) == "number" then
 		if self.op == "+" then
+			print(tostring(self.result) .. " = " .. tostring(a + b))
 			return gamevar.set(self.result, a + b)
 		elseif self.op == "-" then
+			print(tostring(self.result) .. " = " .. tostring(a - b))
 			return gamevar.set(self.result, a - b)
 		elseif self.op == "%" then
+			print(tostring(self.result) .. " = " .. tostring(a % b))
 			return gamevar.set(self.result, a % b)
 		elseif self.op == "*" then
+			print(tostring(self.result) .. " = " .. tostring(a * b))
 			return gamevar.set(self.result, a * b)
 		elseif self.op == "/" then
+			print(tostring(self.result) .. " = " .. tostring(a / b))
 			return gamevar.set(self.result, a / b)
 		else
 			return nil, "Unknown operation"

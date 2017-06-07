@@ -37,6 +37,7 @@ function love.load()
 	level
 		:addChild("Nique bien ta mère Y_Y.")
 			:addCharacter(triste)
+			:addAction("tajine_amitie", "tajine_amitie", "-", 1)
 			:addChild("C'est pas gentil. :(")
 				:addChild(level) -- Retour à l'entretien
 
