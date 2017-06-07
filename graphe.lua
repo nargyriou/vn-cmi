@@ -1,6 +1,7 @@
 Condition = require "condition"
 Context = require "context"
 Dialog = require "dialog"
+local gamevar = require "game_variables"
 
 Noeud = Object:extend()
 
@@ -16,11 +17,24 @@ function Noeud:new(text, background)
 	self.children = {}
 	self.parent = nil
 	self.dialog = Dialog()
+	self.condition = Condition()
 
 	if type(background) == "string" then
 		self:addContext(background)
 	end
 	return self
+end
+
+function Noeud:addCondition(a, op, b)
+	self.condition:set(a, op, b)
+end
+
+function Noeud:addAction(a, op, b)
+	-- todo
+end
+
+function Noeud:isUnlocked()
+	return self.condition:check()
 end
 
 function Noeud:addContext(context)
@@ -59,7 +73,6 @@ function Noeud:addChild(child, path)
 		child.context = self.context
 	end
 
-	self.dialog:addChoice(child.text)
 	table.insert(self.children, child)
 	return child
 end
@@ -73,6 +86,19 @@ function Noeud:getChildByText(text)
 	return false
 end
 
+function Noeud:getChildById(id)
+	return self.children[id]
+end
+
+function Noeud:initialize()
+	self.dialog:reset()
+	for k,v in pairs(self.children) do
+		if v:isUnlocked() then
+			self.dialog:addChoice(v.text)
+		end
+	end
+end
+
 function Noeud:draw()
 	-- Draw background
 	self.context:draw()
@@ -83,9 +109,7 @@ function Noeud:draw()
 	end
 
 	-- Draw dialog box
-	if #self.children > 0 then
-		self.dialog:draw()
-	end
+	self.dialog:draw()
 
 end
 

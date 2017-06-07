@@ -14,8 +14,7 @@ function Player:new(level)
 	end
 
 	self.levelEntryPoint = level
-	self.node = level
-
+	self:moveTo(level)
 end
 
 function Player:drawStuff()
@@ -30,13 +29,18 @@ function Player:navigUp()
 	self.node.dialog:backwards()
 end
 
+function Player:moveTo(node)
+	self.node = node
+	self.node:initialize()
+end
+
 function Player:forward()
 	local _, text = self.node.dialog:getSelectedItem()
-	local temp = self.node:getChildByText(text)
-	if type(temp) == "table" then
-		self.node = temp
+	local nextNode = self.node:getChildByText(text)
+	if type(nextNode) == "table" then
+		self:moveTo(nextNode)
 	else
-		print("Error: This dialog led to no valid path (" .. tostring(text) .. ")")
+		print("Error: This dialog led to no valid node (" .. tostring(text) .. ")")
 	end
 	return self
 end
@@ -46,6 +50,7 @@ function Player:initialize()
 	default:add("down", function() self:navigDown() end)
 	default:add("up", function() self:navigUp() end)
 	default:add("return", function() self:forward() end)
+	default:add("right", function() self:forward() end)
 
 	default:activate()
 end

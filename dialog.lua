@@ -36,12 +36,21 @@ function Dialog:new(...)
 	return self
 end
 
+function Dialog:reset()
+	self.choices = {}
+	self.selection = 1
+end
+
 function Dialog:setQuestion(text)
 	self.question = text
 end
 
 function Dialog:addChoice(text)
 	return table.insert(self.choices, text)
+end
+
+function Dialog:setChoice(i, text)
+	self.choices[i] = text
 end
 
 function Dialog:draw()
