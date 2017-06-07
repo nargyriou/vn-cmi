@@ -34,7 +34,6 @@ function Player:forward()
 	local _, text = self.node.dialog:getSelectedItem()
 	local temp = self.node:getChildByText(text)
 	if type(temp) == "table" then
-		print("woo")
 		self.node = temp
 	else
 		print("Error: This dialog led to no valid path (" .. tostring(text) .. ")")

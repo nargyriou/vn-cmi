@@ -12,22 +12,32 @@ function love.load()
 	local cute = Character("Tajine", "data/tajine/cute.png")
 	local classroom = Context("data/locations/classroom.jpg")
 
-	level = Noeud("Entretien"):addContext(classroom)
+	-- Racine.
+	level = Noeud("Recommencer"):addContext(classroom)
 	level:addCharacter(cute)
 
-	level:setQuestion("Est-ce que c'est plus clair ?")
-	level:addChild("Oui.")
-		:addCharacter(cute)
-		:addChild("Yay. :D")
-	level:addChild("Non.")
-		:addCharacter(triste)
-		:addChild("Aw. :(")
-	level:addChild("Nooooooon !")
-		:addCharacter(triste)
-		:addChild("Aw. :(")
-	level:addChild("Nique bien ta mère Y_Y.")
-		:addCharacter(triste)
-		:addChild("Aw. :(")
+	level
+		:setQuestion("Est-ce que c'est plus clair ?")
+	level
+		:addChild("Oui.")
+			:addCharacter(cute)
+			:addChild("Yay. :D")
+				:addChild(level) -- Retour à l'entretien
+	level
+		:addChild("Non.")
+			:addCharacter(triste)
+			:addChild("Ok. :(")
+				:addChild(level) -- Retour à l'entretien
+	level
+		:addChild("Nooooooon !")
+			:addCharacter(triste)
+			:addChild("Aw. :(")
+				:addChild(level) -- Retour à l'entretien
+	level
+		:addChild("Nique bien ta mère Y_Y.")
+			:addCharacter(triste)
+			:addChild("C'est pas gentil. :(")
+				:addChild(level) -- Retour à l'entretien
 
 	player = Player(level)
 	player:initialize()
