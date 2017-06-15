@@ -125,4 +125,9 @@ function Noeud:draw()
 
 end
 
+function Noeud:addScript(script)
+	self.script = script
+end
+
+
 return Noeud
