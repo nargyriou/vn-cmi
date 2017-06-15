@@ -1,5 +1,5 @@
 local variables = {}
-gamevar = {}
+local gamevar = {}
 
 function gamevar.set(name, value)
 	variables[name] = value

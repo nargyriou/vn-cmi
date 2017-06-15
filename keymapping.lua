@@ -1,6 +1,7 @@
-Input = require "input"
+local Object = require "classic"
+local Input = require "input"
 
-Keymap = Object:extend()
+local Keymap = Object:extend()
 
 local gamemodes = {}
 local input = Input()

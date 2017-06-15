@@ -1,6 +1,7 @@
-colors = require "colors"
+local colors = require "colors"
+local Object = require "classic"
 
-Dialog = Object:extend()
+local Dialog = Object:extend()
 
 local font = love.graphics.newFont("data/fonts/Arimo-Regular.ttf", 22)
 local sWidth, sHeight = love.graphics.getDimensions()

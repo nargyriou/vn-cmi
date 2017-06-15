@@ -1,6 +1,7 @@
+local Object = require "classic"
 local gamevar = require "game_variables"
 
-Condition = Object:extend()
+local Condition = Object:extend()
 
 function Condition:new(a, op, b)
 	self.a = a

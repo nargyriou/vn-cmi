@@ -1,4 +1,5 @@
-Action = Object:extend()
+local Object = require "classic"
+local Action = Object:extend()
 
 function Action:new(result, a, op, b)
 	self.a = a

@@ -1,4 +1,6 @@
-Context = Object:extend()
+local Object = require "classic"
+
+local Context = Object:extend()
 
 function Context:new(image)
 	if type(image) == "string" then

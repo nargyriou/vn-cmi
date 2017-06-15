@@ -1,10 +1,11 @@
 local level
 
 function love.load()
-	Object = require "classic"
-	Noeud = require "graphe"
-	Character = require "character"
-	Player = require "player"
+	local Object = require "classic"
+	local Noeud = require "graphe"
+	local Character = require "character"
+	local Player = require "player"
+	local Context = require "context"
 
 	love.keyboard.setKeyRepeat(0.1, true)
 

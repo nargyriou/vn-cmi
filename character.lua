@@ -1,4 +1,6 @@
-Character = Object:extend()
+local Object = require "classic"
+
+local Character = Object:extend()
 
 local sWidth, sHeight = love.graphics.getDimensions()
 

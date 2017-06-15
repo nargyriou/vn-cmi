@@ -1,9 +1,10 @@
-Keymap = require "keymapping"
+local Object = require "classic"
+local Keymap = require "keymapping"
 
 local default = Keymap()
 local instanciated = false
 local instance = nil
-Player = Object:extend()
+local Player = Object:extend()
 
 function Player:new(level)
 	if not instanciated then

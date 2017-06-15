@@ -1,10 +1,11 @@
-Condition = require "condition"
-Context = require "context"
-Dialog = require "dialog"
-Action = require "actions"
+local Object = require "classic"
+local Condition = require "condition"
+local Context = require "context"
+local Dialog = require "dialog"
+local Action = require "actions"
 local gamevar = require "game_variables"
 
-Noeud = Object:extend()
+local Noeud = Object:extend()
 
 local function getDialogTexts(children)
 	local t = {}
