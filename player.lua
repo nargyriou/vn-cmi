@@ -55,7 +55,7 @@ function Player:moveTo(node)
 	end
 end
 
--- Called when the player moves onto a new node
+-- Called once when the player object is created
 function Player:initialize()
 	--Setup key mapping
 	default:add("down", function() self:navigDown() end)

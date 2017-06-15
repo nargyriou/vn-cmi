@@ -14,11 +14,9 @@ function love.load()
 	local classroom = Context("data/locations/classroom.jpg")
 
 	-- Racine.
-	level = Noeud("Recommencer"):addContext(classroom)
+	level = Noeud("Est-ce que c'est plus clair ?"):addContext(classroom)
 	level:addCharacter(cute)
 
-	level
-		:setQuestion("Est-ce que c'est plus clair ?")
 	level
 		:addChild("Oui.")
 			:addCharacter(cute)

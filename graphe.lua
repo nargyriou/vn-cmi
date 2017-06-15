@@ -5,7 +5,9 @@ local Dialog = require "dialog"
 local Action = require "actions"
 local gamevar = require "game_variables"
 
-local Noeud = Object:extend()
+local Node = Object:extend()
+
+-- Le graphe du visual novel
 
 local function getDialogTexts(children)
 	local t = {}
@@ -14,7 +16,7 @@ local function getDialogTexts(children)
 	end
 end
 
-function Noeud:new(text, background)
+function Node:new(text, background)
 	self.text = text
 	self.children = {}
 	self.parent = nil
@@ -29,13 +31,13 @@ function Noeud:new(text, background)
 	return self
 end
 
-function Noeud:addCondition(a, op, b)
+function Node:addCondition(a, op, b)
 	self.condition:set(a, op, b)
 	
 	return self
 end
 
-function Noeud:addAction(name, a, op, b)
+function Node:addAction(name, a, op, b)
 	if a == nil then
 		self.action = name
 	else
@@ -45,11 +47,11 @@ function Noeud:addAction(name, a, op, b)
 	return self
 end
 
-function Noeud:isUnlocked()
+function Node:isUnlocked()
 	return self.condition:check()
 end
 
-function Noeud:addContext(context)
+function Node:addContext(context)
 	if type(context) == "string" then
 		self.context = Context(context)
 	else
@@ -59,7 +61,7 @@ function Noeud:addContext(context)
 	return self
 end
 
-function Noeud:addCharacter(character, image)
+function Node:addCharacter(character, image)
 	if type(character) == "string" then
 		self.character = Character(character, image)
 	else
@@ -69,14 +71,14 @@ function Noeud:addCharacter(character, image)
 	return self
 end
 
-function Noeud:setQuestion(text)
+function Node:setQuestion(text)
 	self.dialog:setQuestion(text)
 end
 
-function Noeud:addChild(child, path)
+function Node:addChild(child, path)
 	if type(child) == "string" then
 		local text = child
-		child = Noeud(text, path)
+		child = Node(text, path)
 	end
 
 	child.parent = self
@@ -89,7 +91,7 @@ function Noeud:addChild(child, path)
 	return child
 end
 
-function Noeud:getChildByText(text)
+function Node:getChildByText(text)
 	for i,v in pairs(self.children) do
 		if type(v) == "table" and v.text == text then
 			return v
@@ -98,11 +100,11 @@ function Noeud:getChildByText(text)
 	return false
 end
 
-function Noeud:getChildById(id)
+function Node:getChildById(id)
 	return self.children[id]
 end
 
-function Noeud:initialize()
+function Node:initialize()
 	self.dialog:reset()
 	for k,v in pairs(self.children) do
 		if v:isUnlocked() then
@@ -111,7 +113,7 @@ function Noeud:initialize()
 	end
 end
 
-function Noeud:draw()
+function Node:draw()
 	-- Draw background
 	self.context:draw()
 
@@ -125,9 +127,9 @@ function Noeud:draw()
 
 end
 
-function Noeud:addScript(script)
+function Node:addScript(script)
 	self.script = script
 end
 
 
-return Noeud
+return Node
