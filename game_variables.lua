@@ -10,3 +10,4 @@ function gamevar.read(name)
 	return variables[name]
 end
 
+return gamevar

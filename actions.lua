@@ -1,4 +1,5 @@
 local Object = require "classic"
+local gamevar = require "game_variables"
 local Action = Object:extend()
 
 function Action:new(result, a, op, b)

@@ -7,7 +7,7 @@ local font = love.graphics.newFont("data/fonts/Arimo-Regular.ttf", 22)
 local sWidth, sHeight = love.graphics.getDimensions()
 
 local function printf(text, x, y, limit, align)
-	width, wrappedtext = font:getWrap(text, limit)
+	local width, wrappedtext = font:getWrap(text, limit)
 	
 	local lineHeight = font:getHeight()*1.1
 	local offset = 0
