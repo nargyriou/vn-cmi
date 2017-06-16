@@ -4,6 +4,7 @@ local Context = require "context"
 local Dialog = require "dialog"
 local Action = require "actions"
 local gamevar = require "game_variables"
+local Character = require "Character"
 
 local Node = Object:extend()
 
